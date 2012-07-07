@@ -13,4 +13,4 @@ rm deneme.o
 .PHONY: calistir
 calistir:
 ./deneme
-pause
+
