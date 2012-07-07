@@ -96,7 +96,7 @@ class Vt
 		vtyaz(vt_adi);
 	}
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/
-/*	dchar[] coz(dchar[] sifre, dchar[] bayrak)
+/*	dchar[] decrypt(dchar[] sifre, dchar[] bayrak)
     {
 	dchar[] yenisifre;
         int sayi;
@@ -110,7 +110,7 @@ class Vt
     }
 */
 /********************************************************************/
-/*	 dchar[] gizle(dchar[] sifre, dchar[] bayrak)
+/*	 dchar[] encrypt(dchar[] sifre, dchar[] bayrak)
     {
         dchar[] yeniSifre;
         int sayi;
