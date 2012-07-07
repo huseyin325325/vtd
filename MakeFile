@@ -7,8 +7,8 @@ dmd deneme.d vt.d -w
 
 .PHONY: sil
 sil:
-del deneme
-del deneme.o
+rm deneme
+rm deneme.o
 
 .PHONY: calistir
 calistir:
