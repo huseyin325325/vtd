@@ -13,7 +13,7 @@ import vt;
 
 void main()
 {
-	auto tabanim= new Vt;
+	auto tabanim= new  Vt;
 	tabanim.dbopen("abc.vt");
 	tabanim.add("tablo","anah","veri");
 	tabanim.save();
