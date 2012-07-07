@@ -1,0 +1,16 @@
+vt: derle
+
+.PHONY: derle
+derle:
+dmd deneme.d vt.d -w
+
+
+.PHONY: sil
+sil:
+del deneme.exe
+del deneme.obj
+
+.PHONY: calistir
+calistir:
+./deneme
+pause
