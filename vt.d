@@ -26,6 +26,7 @@ class Vt
 	void dbwrite(string vtadi_,string sifre)
 	{
 		scope File dosya = new File(vtadi_,FileMode.OutNew);
+		dosya.writeLine(encrypt("sifre",sifre));
 		foreach(tabloadi,anahtares;Veritabani)
 		{
 			dosya.writeLine(encrypt("|"~tabloadi~"|",sifre));
@@ -44,7 +45,8 @@ class Vt
 	{
 		vt_adi=dosya_adi;
 		scope File dosya = new File(dosya_adi,FileMode.In);
-		
+		if(decrypt(to!(string)(dosya.readLine()),sifre)=="sifre")
+		{
 		
 		string tablo_s;
 		
@@ -72,6 +74,11 @@ class Vt
 					
 				}	
 			}
+		}
+		else
+		{
+			throw new Exception("Hata: Girdiğiniz Parola Yanlış");
+		}
 			
 	   }
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
