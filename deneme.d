@@ -15,7 +15,7 @@ void main()
 {
 	auto tabanim= new  Vt;
 	tabanim.dbopen("file.vt","123");
-	writeln(tabanim.Veritabani);
+	writeln(tabanim.Database);
 
 }
 

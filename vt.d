@@ -17,7 +17,7 @@ class Vt
 {
 	
 	string vt_adi;
-	string[] [string][string] Veritabani; //İşte bu bizim tüm veritabanımız kucuk gibi 
+	string[] [string][string] Database; //İşte bu bizim tüm veritabanımız kucuk gibi 
 	//gorunmesin gayet guclu oldugunu ileride göreceksiniz 
 	
 
@@ -27,7 +27,7 @@ class Vt
 	{
 		scope File dosya = new File(vtadi_,FileMode.OutNew);
 		dosya.writeLine(encrypt("sifre",sifre));
-		foreach(tabloadi,anahtares;Veritabani)
+		foreach(tabloadi,anahtares;Database)
 		{
 			dosya.writeLine(encrypt("|"~tabloadi~"|",sifre));
 			foreach(anahtaradi,veriler;anahtares)
@@ -70,7 +70,7 @@ class Vt
 				}
 				else
 				{
-					Veritabani[tablo_s][anahtar_s]~=satir_s;
+					Database[tablo_s][anahtar_s]~=satir_s;
 					
 				}	
 			}
@@ -84,18 +84,18 @@ class Vt
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
 	void tdelete(string ad_tablo)
 	{
-		Veritabani.remove(ad_tablo);
+		Database.remove(ad_tablo);
 	}
 
 /***********************************************************************/	
 	void kdelete(string ad_tablo,string ad_anahtar)
 	{
-		Veritabani[ad_tablo].remove(ad_anahtar);
+		Database[ad_tablo].remove(ad_anahtar);
 	}
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
 	void add(string ad_tablo,string ilk_anah,string ilkver)
 	{
-		Veritabani[ad_tablo][ilk_anah]~=ilkver;
+		Database[ad_tablo][ilk_anah]~=ilkver;
 	}
 
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
