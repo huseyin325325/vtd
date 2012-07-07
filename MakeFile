@@ -7,10 +7,15 @@ dmd deneme.d vt.d -w
 
 .PHONY: sil
 sil:
+<<<<<<< HEAD
 del deneme
 del deneme.o
+=======
+rm deneme
+rm deneme.o
+>>>>>>> 840a5a5329a9280e2121bf130e192502294fa599
 
 .PHONY: calistir
 calistir:
 ./deneme
-pause
+

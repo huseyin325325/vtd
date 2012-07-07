@@ -78,6 +78,7 @@ class Vt
 	{
 		Veritabani.remove(ad_tablo);
 	}
+
 /***********************************************************************/	
 	void kdelete(string ad_tablo,string ad_anahtar)
 	{
