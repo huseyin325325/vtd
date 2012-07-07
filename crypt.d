@@ -1,31 +1,41 @@
 module crypt;
-
-
-
-dchar[] decrypt(dchar[] sifre, dchar[] bayrak)
+import std.stdio;
+import std.range;
+import std.conv;
+ 
+ 
+string decrypt(string sifre_s, string bayrak_s)
     {
-	dchar[] yenisifre;
+    char[] sifre=to!(char[])(sifre_s);
+    char[] bayrak=to!(char[])(bayrak_s);
+    char[] yenisifre;
         int sayi;
         int say=bayrak.length;
-        foreach(ref karakter; sifre){
+        
+ 
+ 
+        for(;!sifre.empty;sifre.popFront()){
             sayi=say%bayrak.length;
-            yenisifre~=cast(int)karakter-cast(int)bayrak[sayi];
+            yenisifre~=cast(int)sifre.front-cast(int)bayrak[sayi];
             ++say;
         }
-        return yenisifre;
+        return to!(string)(yenisifre);
     }
-
-
-
-dchar[] encrypt(dchar[] sifre, dchar[] bayrak)
+ 
+ 
+ 
+string encrypt(string sifre_s, string bayrak_s)
     {
-        dchar[] yeniSifre;
+        char[] yeniSifre;
+	char[] sifre=to!(char[])(sifre_s);
+	char[] bayrak=to!(char[])(bayrak_s);
         int sayi;
         int say=bayrak.length;
-        foreach(ref karakter; sifre){
+        for(;!sifre.empty;sifre.popFront()){
             sayi=say%bayrak.length;
-            yeniSifre~=cast(int)karakter+cast(int)bayrak[sayi];
+            yeniSifre~=cast(int)sifre.front+cast(int)bayrak[sayi];
             ++say;
         }
-        return yeniSifre;
+        return to!(string)(yeniSifre);
     }
+ 

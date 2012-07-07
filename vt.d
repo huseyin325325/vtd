@@ -23,24 +23,24 @@ class Vt
 
 	
 /+++++++++++++++++++++++++++++++++ ++++++++++++++++++++++++++++++++++++++/ //
-	void dbwrite(string vtadi_)
+	void dbwrite(string vtadi_,string sifre)
 	{
 		scope File dosya = new File(vtadi_,FileMode.OutNew);
 		foreach(tabloadi,anahtares;Veritabani)
 		{
-			dosya.writeLine("|"~tabloadi~"|");
+			dosya.writeLine(encrypt("|"~tabloadi~"|",sifre));
 			foreach(anahtaradi,veriler;anahtares)
 			{
-				dosya.writeLine("*"~anahtaradi~"*");
+				dosya.writeLine(encrypt("*"~anahtaradi~"*",sifre));
 				foreach(veri;veriler)
 				{
-					dosya.writeLine(veri);
+					dosya.writeLine(encrypt(veri,sifre));
 				}
 			}	
 		}
 	}
 /***********************************************************************/
-	void dbopen(string dosya_adi)
+	void dbopen(string dosya_adi,string sifre)
 	{
 		vt_adi=dosya_adi;
 		scope File dosya = new File(dosya_adi,FileMode.In);
@@ -53,8 +53,8 @@ class Vt
 		string[] veri_s;
 		while(dosya.available)
 		{
-			char[] satir_c=dosya.readLine();
-			string satir_s=to!(string)(satir_c);
+			string satir_s=decrypt(to!(string)(dosya.readLine()),sifre);
+			char[] satir_c=to!(char[])(satir_s);
 			
 			
 			
@@ -92,9 +92,9 @@ class Vt
 	}
 
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void save()
+	void save(string sifre)
 	{
-		dbwrite(vt_adi);
+		dbwrite(vt_adi,sifre);
 	}
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/
 

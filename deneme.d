@@ -14,9 +14,9 @@ import vt;
 void main()
 {
 	auto tabanim= new  Vt;
-	tabanim.dbopen("abc.vt");
-	tabanim.add("tablo","anah","veri");
-	tabanim.save();
+	tabanim.dbopen("abc.vt","123");
+	writeln(tabanim.Veritabani);
+	
 
 }
 
