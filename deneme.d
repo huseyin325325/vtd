@@ -14,9 +14,9 @@ import vt;
 void main()
 {
 	auto tabanim= new Vt;
-	tabanim.vtac("abc.vt");
-	tabanim.ekle("tablo","anah","veri");
-	tabanim.kaydet();
+	tabanim.dbopen("abc.vt");
+	tabanim.add("tablo","anah","veri");
+	tabanim.save();
 
 }
 

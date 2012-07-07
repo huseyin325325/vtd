@@ -22,7 +22,7 @@ class Vt
 
 	
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void vtyaz(string vtadi_)
+	void dbwrite(string vtadi_)
 	{
 		scope File dosya = new File(vtadi_,FileMode.OutNew);
 		foreach(tabloadi,anahtares;Veritabani)
@@ -39,7 +39,7 @@ class Vt
 		}
 	}
 /***********************************************************************/
-	void vtac(string dosya_adi)
+	void dbopen(string dosya_adi)
 	{
 		vt_adi=dosya_adi;
 		scope File dosya = new File(dosya_adi,FileMode.In);
@@ -74,23 +74,23 @@ class Vt
 			
 	   }
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void tsil(string ad_tablo)
+	void tdelete(string ad_tablo)
 	{
 		Veritabani.remove(ad_tablo);
 	}
 /***********************************************************************/	
-	void asil(string ad_tablo,string ad_anahtar)
+	void kdelete(string ad_tablo,string ad_anahtar)
 	{
 		Veritabani[ad_tablo].remove(ad_anahtar);
 	}
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void ekle(string ad_tablo,string ilk_anah,string ilkver)
+	void add(string ad_tablo,string ilk_anah,string ilkver)
 	{
 		Veritabani[ad_tablo][ilk_anah]~=ilkver;
 	}
 
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void kaydet()
+	void save()
 	{
 		vtyaz(vt_adi);
 	}
