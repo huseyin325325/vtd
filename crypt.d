@@ -3,11 +3,10 @@ import std.stdio;
 import std.range;
 import std.conv;
  
- 
-string decrypt(string sifre_s, string bayrak_s)
+string decrypt(string sifre_s, string bayrak)
     {
     char[] sifre=to!(char[])(sifre_s);
-    char[] bayrak=to!(char[])(bayrak_s);
+ 
     char[] yenisifre;
         int sayi;
         int say=bayrak.length;
@@ -21,14 +20,10 @@ string decrypt(string sifre_s, string bayrak_s)
         }
         return to!(string)(yenisifre);
     }
- 
- 
- 
-string encrypt(string sifre_s, string bayrak_s)
+string encrypt(string sifre_s, string bayrak)
     {
         char[] yeniSifre;
-	char[] sifre=to!(char[])(sifre_s);
-	char[] bayrak=to!(char[])(bayrak_s);
+        char[] sifre=to!(char[])(sifre_s);
         int sayi;
         int say=bayrak.length;
         for(;!sifre.empty;sifre.popFront()){
@@ -38,4 +33,3 @@ string encrypt(string sifre_s, string bayrak_s)
         }
         return to!(string)(yeniSifre);
     }
- 
