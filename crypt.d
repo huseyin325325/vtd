@@ -3,7 +3,7 @@ import std.stdio;
 import std.range;
 import std.conv;
  
-string decrypt(string sifre_s, string bayrak)
+string decrypt(string sifre_s, string bayrak) //sifre cozme 
     {
     char[] sifre=to!(char[])(sifre_s);
  
@@ -20,7 +20,8 @@ string decrypt(string sifre_s, string bayrak)
         }
         return to!(string)(yenisifre);
     }
-string encrypt(string sifre_s, string bayrak)
+    /++++++++++++++++++++++++++++++++++++++++++++++++++/
+string encrypt(string sifre_s, string bayrak) //sifreleme
     {
         char[] yeniSifre;
         char[] sifre=to!(char[])(sifre_s);

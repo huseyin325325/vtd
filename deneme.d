@@ -13,10 +13,10 @@ import vt;
 
 void main()
 {
-	auto tabanim= new  Vt;
-	tabanim.dbopen("file.vt","123");
-	writeln(tabanim.Database);
-
+	auto mydata= new  Vt;
+	mydata.dbopen("file.vt","123");
+	mydata.add("example","keyone","data");
+	writeln(mydata.Database);
 }
 
 

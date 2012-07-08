@@ -15,24 +15,24 @@ import crypt; // sifreleme modulumuz :)
 
 class Vt
 {
-	
-	string vt_adi;
+	string db_pass;
+	string db_name;
 	string[] [string][string] Database; //İşte bu bizim tüm veritabanımız kucuk gibi 
 	//gorunmesin gayet guclu oldugunu ileride göreceksiniz 
 	
 
 	
 /+++++++++++++++++++++++++++++++++ ++++++++++++++++++++++++++++++++++++++/ //
-	void dbwrite(string vtadi_,string sifre)
+	void dbwrite(string vtadi_,string sifre) // veritabanını yazmak için kulllanılan fonk
 	{
 		scope File dosya = new File(vtadi_,FileMode.OutNew);
 		dosya.writeLine(encrypt("sifre",sifre));
 		foreach(tabloadi,anahtares;Database)
 		{
-			dosya.writeLine(encrypt("|"~tabloadi~"|",sifre));
+			dosya.writeLine(encrypt("|;"~tabloadi~"|;",sifre));
 			foreach(anahtaradi,veriler;anahtares)
 			{
-				dosya.writeLine(encrypt("*"~anahtaradi~"*",sifre));
+				dosya.writeLine(encrypt("*;"~anahtaradi~"*;",sifre));
 				foreach(veri;veriler)
 				{
 					dosya.writeLine(encrypt(veri,sifre));
@@ -41,12 +41,15 @@ class Vt
 		}
 	}
 /***********************************************************************/
-	void dbopen(string dosya_adi,string sifre)
+	void dbopen(string dosya_adi,string sifre)//veritabanını açıp Database adlı değişkene veriyi
+	// okur
 	{
-		vt_adi=dosya_adi;
+		
 		scope File dosya = new File(dosya_adi,FileMode.In);
 		if(decrypt(to!(string)(dosya.readLine()),sifre)=="sifre")
 		{
+			db_name=dosya_adi;
+			db_pass=sifre;
 		
 		string tablo_s;
 		
@@ -60,13 +63,13 @@ class Vt
 			
 			
 			
-				if(satir_c[0..1]=="|")
+				if(satir_c[0..2]=="|;")
 				{
-					tablo_s=replace(satir_s,"|","");
+					tablo_s=replace(satir_s,"|;","");
 				}
-				else if(satir_c[0..1]=="*")
+				else if(satir_c[0..2]=="*;")
 				{
-					anahtar_s=replace(satir_s,"*","");
+					anahtar_s=replace(satir_s,"*;","");
 				}
 				else
 				{
@@ -82,27 +85,40 @@ class Vt
 			
 	   }
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void tdelete(string ad_tablo)
-	{
-		Database.remove(ad_tablo);
-	}
+		
+		void deltable(string ad_tablo)
+		{
+			Database.remove(ad_tablo);
+		}
+		
+		void delkey(string ad_tablo,string ad_anahtar)
+		{
+			Database[ad_tablo].remove(ad_anahtar);
+		}
 
-/***********************************************************************/	
-	void kdelete(string ad_tablo,string ad_anahtar)
-	{
-		Database[ad_tablo].remove(ad_anahtar);
-	}
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
 	void add(string ad_tablo,string ilk_anah,string ilkver)
-	{
+	{ //veri ekler
 		Database[ad_tablo][ilk_anah]~=ilkver;
 	}
 
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/ //
-	void save(string sifre)
-	{
-		dbwrite(vt_adi,sifre);
+	void dbsave()
+	{ //veritabanını kaydeder
+		dbwrite(db_name,db_pass);
 	}
 /+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/
-
+	void dbclose() //veritabanı ile işiniz bittiğinde kapatırsınız
+	//ÖNEMLİ: kendisi kayıt yapma bunun için <veritabanı>.dbsave(); kullanmak zorundasınız.
+	{
+		db_name="";
+		db_pass="";
+		Database=Database.init;
+		if(db_name != "" || db_pass !="")
+		{
+			throw new Exception("Hata: Veritabanı Kapatılamadı.");
+		}
+		
+	}
+/++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/
 } //class sonu
