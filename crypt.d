@@ -8,7 +8,7 @@ string decrypt(string sifre_s, string bayrak) //sifre cozme
     char[] sifre=to!(char[])(sifre_s);
  
     char[] yenisifre;
-        int sayi;
+        size_t sayi;
         size_t say=bayrak.length;
         
  
@@ -25,7 +25,7 @@ string encrypt(string sifre_s, string bayrak) //sifreleme
     {
         char[] yeniSifre;
         char[] sifre=to!(char[])(sifre_s);
-        int sayi;
+        size_t sayi;
         size_t say=bayrak.length;
         for(;!sifre.empty;sifre.popFront()){
             sayi=say%bayrak.length;
