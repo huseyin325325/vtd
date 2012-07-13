@@ -16,10 +16,13 @@ void main()
 	db["tabl1"]= new Subtable;
 	Subtable sub= db["tabl1"];
 	Data datam =new Data;
-	dmy.datam~="12";
+	datam.datas~="12";
+	datam.datas~="ben";
 	sub["key1"]= datam;
 	writeln(db.db);
 	writeln(sub.subtables);
+	writeln(datam.datas);
+	datam.del("12");
 	writeln(datam.datas);
 	
 }

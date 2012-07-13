@@ -21,7 +21,7 @@ struct HuffmanTree
 		fileToCompress_.open(fileName ~ ".had", "r");
 		compressedFile_.open(fileName ~ "compressed" ~ ".had", "w");
 		fileName_ = fileName ~ ".txt";
-	}
+	}	2012-07-11T10:19:37-07:00
 
 	~this()
 	{

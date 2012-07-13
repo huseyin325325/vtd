@@ -14,6 +14,20 @@ import crypt;
 class Data
 {
 	string[] datas;
+	
+	void del(string name)
+	{
+		string[] dizi2;
+		int sayac = datas.length;
+		for (int i=0;i<sayac;++i)
+		{
+			if(datas[i] != name)
+			{
+				dizi2~=datas[i];
+			}
+		}
+		datas=dizi2;
+	}
 }//end of class
 
 class Subtable
