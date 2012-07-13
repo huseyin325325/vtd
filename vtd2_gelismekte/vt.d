@@ -10,28 +10,44 @@ import std.cstream;
 import std.array;
 import crypt; 
 
-class Database
-{
-	Subtable [string] database;
-	
-}//end of class
-
-class Subtable
-{
-	Data [string] subtables;
-}//end of class
 
 class Data
 {
 	string[] datas;
 }//end of class
 
-class InOut
+class Subtable
 {
-	Database dbopen(string dbname)
+	Data [string] subtables;
+	Data opIndexAssign(Data dat,string name)
 	{
-		
-		Database db = new Database;
+		return subtables[name]=dat;
+	}
+}//end of class
+
+class Database
+{
+	Subtable [string] db;
+	string dbname;
+	
+	Subtable opIndex(string table)
+	{
+		return db[table];
+	}
+	
+	Subtable opIndexAssign(Subtable table,string name)
+	{
+		return db[name]=table;
+	}
+	
+	
+	
+	
+	
+	
+	
+	void open()
+	{
 		Data data = new Data;
 		Subtable subtable = new Subtable;
 		scope File myfile = new File(dbname,FileMode.In);
@@ -55,14 +71,19 @@ class InOut
 			{
 				data.datas~=line_s;
 				subtable.subtables[currentkey]=data;
-				db.database[currenttable]=subtable;
+				this.db[currenttable]=subtable;
 			}
 		}
 		
-		return db;
-	}
+		
+}//end of class
+
+
+
+
+
 	
-	
+
 	
 }//end of class
 

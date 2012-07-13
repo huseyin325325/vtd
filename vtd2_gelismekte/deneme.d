@@ -12,13 +12,14 @@ import vt;
 
 void main()
 {
-	
-	InOut io = new InOut;
-	Database dbase = io.dbopen("db.vt");
-	Subtable sub = dbase.database["tablo1"];
-	Data data = sub.subtables ["anahtar1"];
-	writeln(dbase.database);
+	Database db = new Database;
+	db["tabl1"]= new Subtable;
+	Subtable sub= db["tabl1"];
+	Data datam =new Data;
+	dmy.datam~="12";
+	sub["key1"]= datam;
+	writeln(db.db);
 	writeln(sub.subtables);
-	writeln(data.datas);
+	writeln(datam.datas);
 	
 }
