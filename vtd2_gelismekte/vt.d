@@ -28,6 +28,10 @@ class Data
 		}
 		datas=dizi2;
 	}
+	void add(string dat)
+	{
+		datas~=dat;
+	}
 }//end of class
 
 class Subtable
@@ -36,6 +40,15 @@ class Subtable
 	Data opIndexAssign(Data dat,string name)
 	{
 		return subtables[name]=dat;
+	}
+	void del(string key)
+	{
+		subtables.remove(key);
+	}
+	
+	void add(string key,Data firstdata)
+	{
+		subtables[key]=firstdata;
 	}
 }//end of class
 
@@ -53,13 +66,14 @@ class Database
 	{
 		return db[name]=table;
 	}
-	
-	
-	
-	
-	
-	
-	
+	void del()
+	{
+		db.remove(table);
+	}
+	void add(Subtable firstkey)
+	{
+		db[table]=firstkey;
+	}
 	void open()
 	{
 		Data data = new Data;
