@@ -15,13 +15,13 @@ void main()
 	Database dbase=Database("db.vt");
 	Subtable subt;
 	Data dd;
-	
 	dbase.open();
 	dbase.db.writeln();
-	subt=dbase.db["tablo1"];
-	dd=subt.subtables["anahtar1"];
+	subt=dbase["tablo1"];
+	dd=subt["anahtar1"];
 	dd.add("merhaba");
-	subt.subtables["anahtar1"]=dd;
+	subt["anahtar1"]=dd;
+	dbase["tablo1"]=subt;
 	dbase.db.writeln();
 	dbase.dbwrite("aa.vt");
 	

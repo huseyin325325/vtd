@@ -42,7 +42,10 @@ struct Subtable
 	
 	 
 	Data [string] subtables;
-	
+	Data opIndex(string key)
+	{
+		return subtables[key];
+	}
 	Data opIndexAssign(Data dat,string name)
 	{
 		return subtables[name]=dat;
