@@ -13,17 +13,9 @@ import crypt;
 
 struct Data
 {
-	ref Data opAssing(ref Data sag)
-	{
-		this.datas=datas.init;
-		this.datas=sag.datas;
-		return this;
-	}
+	
 
-	this(this)
-	{
-		datas=datas.dup;
-	}
+	
 	string[] datas;
 	
 	void del(string name)
@@ -48,17 +40,9 @@ struct Data
 struct Subtable
 {
 	
-	 this(this)
-	{
-		subtables=subtables.dup;
-	}
+	 
 	Data [string] subtables;
-	ref Subtable opAssing(ref Subtable sag)
-	{
-		this.subtables=subtables.init;
-		this.subtables=sag.subtables;
-		return this;
-	}
+	
 	Data opIndexAssign(Data dat,string name)
 	{
 		return subtables[name]=dat;
@@ -84,11 +68,7 @@ struct Database
 	{
 		this.dbname=db;
 	}
-	this(this)
-	{
-		
-		db=db.dup;
-	}
+	
 	
 	Subtable opIndex(string table)
 	{
@@ -123,10 +103,13 @@ struct Database
 			if(line_c[0..2]=="|;")
 			{
 				currenttable=replace(line_s,"|;","");
+				subtable=subtable.init;
 			}
 			else if(line_c[0..2]=="*;")
 			{
 				currentkey=replace(line_s,"*;","");
+				currentdatas=currentdatas.init;
+				data=data.init;
 			}
 			else
 			{
@@ -134,11 +117,9 @@ struct Database
 				data.datas=currentdatas;
 				subtable.subtables[currentkey]=data;
 				this.db[currenttable]=subtable;
-				currentdatas=currentdatas.init;
-				data=data.init;
-				subtable=subtable.init;
-				currenttable=currenttable.init;
-				currentkey=currentkey.init;
+				//temizlik
+			
+			
 			}
 		}
 		

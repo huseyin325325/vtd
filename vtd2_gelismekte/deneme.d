@@ -21,5 +21,8 @@ void main()
 	subt=dbase.db["tablo1"];
 	dd=subt.subtables["anahtar1"];
 	dd.add("merhaba");
+	subt.subtables["anahtar1"]=dd;
+	dbase.db.writeln();
 	dbase.dbwrite("aa.vt");
+	
 }
