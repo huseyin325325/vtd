@@ -8,6 +8,7 @@ struct HuffmanTree
 {
 	private
 	{
+		
 		uint[string] compressTable_;
 		string[uint] decompressTable_;
 		Node top_;

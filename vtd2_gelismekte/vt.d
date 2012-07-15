@@ -11,8 +11,19 @@ import std.array;
 import crypt; 
 
 
-class Data
+struct Data
 {
+	ref Data opAssing(ref Data sag)
+	{
+		this.datas=datas.init;
+		this.datas=sag.datas;
+		return this;
+	}
+
+	this(this)
+	{
+		datas=datas.dup;
+	}
 	string[] datas;
 	
 	void del(string name)
@@ -34,9 +45,20 @@ class Data
 	}
 }//end of class
 
-class Subtable
+struct Subtable
 {
+	
+	 this(this)
+	{
+		subtables=subtables.dup;
+	}
 	Data [string] subtables;
+	ref Subtable opAssing(ref Subtable sag)
+	{
+		this.subtables=subtables.init;
+		this.subtables=sag.subtables;
+		return this;
+	}
 	Data opIndexAssign(Data dat,string name)
 	{
 		return subtables[name]=dat;
@@ -52,10 +74,21 @@ class Subtable
 	}
 }//end of class
 
-class Database
+struct Database
 {
+	
 	Subtable [string] db;
 	string dbname;
+	
+	this(string db)
+	{
+		this.dbname=db;
+	}
+	this(this)
+	{
+		
+		db=db.dup;
+	}
 	
 	Subtable opIndex(string table)
 	{
@@ -66,18 +99,18 @@ class Database
 	{
 		return db[name]=table;
 	}
-	void del()
+	void del(string table)
 	{
 		db.remove(table);
 	}
-	void add(Subtable firstkey)
+	void add(string table,Subtable firstkey)
 	{
 		db[table]=firstkey;
 	}
 	void open()
 	{
-		Data data = new Data;
-		Subtable subtable = new Subtable;
+		Data data;
+		Subtable subtable;
 		scope File myfile = new File(dbname,FileMode.In);
 		
 		string currenttable;
@@ -97,21 +130,40 @@ class Database
 			}
 			else
 			{
-				data.datas~=line_s;
+				currentdatas~=line_s;
+				data.datas=currentdatas;
 				subtable.subtables[currentkey]=data;
 				this.db[currenttable]=subtable;
+				currentdatas=currentdatas.init;
+				data=data.init;
+				subtable=subtable.init;
+				currenttable=currenttable.init;
+				currentkey=currentkey.init;
 			}
 		}
 		
 		
-}//end of class
-
-
-
-
-
+	}
 	
-
+	void dbwrite(string dbn)
+	{
+		scope File myfile = new File(dbn,FileMode.OutNew);
+		foreach(table,subtab;db)
+		{
+			myfile.writeLine("|;"~table~"|;");
+			foreach(key,val;subtab.subtables)
+			{
+				myfile.writeLine("*;"~key~"*;");
+				foreach(dat;val.datas)
+				{
+					myfile.writeLine(dat);
+					
+				}
+			}
+		}
+		
+	}
+	
 	
 }//end of class
 

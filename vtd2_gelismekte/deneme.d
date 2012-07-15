@@ -12,17 +12,14 @@ import vt;
 
 void main()
 {
-	Database db = new Database;
-	db["tabl1"]= new Subtable;
-	Subtable sub= db["tabl1"];
-	Data datam =new Data;
-	datam.datas~="12";
-	datam.datas~="ben";
-	sub["key1"]= datam;
-	writeln(db.db);
-	writeln(sub.subtables);
-	writeln(datam.datas);
-	datam.del("12");
-	writeln(datam.datas);
+	Database dbase=Database("db.vt");
+	Subtable subt;
+	Data dd;
 	
+	dbase.open();
+	dbase.db.writeln();
+	subt=dbase.db["tablo1"];
+	dd=subt.subtables["anahtar1"];
+	dd.add("merhaba");
+	dbase.dbwrite("aa.vt");
 }
