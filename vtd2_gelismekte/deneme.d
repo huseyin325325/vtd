@@ -20,9 +20,7 @@ void main()
 	subt=dbase["tablo1"];
 	dd=subt["anahtar1"];
 	dd.add("merhaba");
-	subt["anahtar1"]=dd;
-	dbase["tablo1"]=subt;
 	dbase.db.writeln();
-	dbase.close();
+	dbase.close(); //save() işlemini de içerir
 	
 }

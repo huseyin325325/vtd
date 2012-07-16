@@ -42,7 +42,7 @@ struct Subtable
 	
 	 
 	Data [string] subtables;
-	Data opIndex(string key)
+	ref Data opIndex(string key)
 	{
 		return subtables[key];
 	}
@@ -73,7 +73,7 @@ struct Database
 	}
 	
 	
-	Subtable opIndex(string table)
+	ref Subtable opIndex(string table)
 	{
 		return db[table];
 	}
