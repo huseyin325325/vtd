@@ -23,6 +23,6 @@ void main()
 	subt["anahtar1"]=dd;
 	dbase["tablo1"]=subt;
 	dbase.db.writeln();
-	dbase.dbwrite("aa.vt");
+	dbase.close(); //BBu işlemde kayıt da yapılıyor 
 	
 }
