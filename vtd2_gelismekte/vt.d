@@ -129,9 +129,9 @@ struct Database
 		
 	}
 	
-	void dbwrite(string dbn)
+	void close()
 	{
-		scope File myfile = new File(dbn,FileMode.OutNew);
+		scope File myfile = new File(dbname,FileMode.OutNew);
 		foreach(table,subtab;db)
 		{
 			myfile.writeLine("|;"~table~"|;");
