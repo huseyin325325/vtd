@@ -12,7 +12,7 @@ import vt;
 
 void main()
 {
-	Database dbase=Database("db.vt");
+	Database dbase=Database("db");
 	Subtable subt;
 	Data dd;
 	dbase.open();
@@ -23,6 +23,6 @@ void main()
 	subt["anahtar1"]=dd;
 	dbase["tablo1"]=subt;
 	dbase.db.writeln();
-	dbase.close(); //BBu işlemde kayıt da yapılıyor 
+	dbase.close();
 	
 }

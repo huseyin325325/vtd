@@ -69,7 +69,7 @@ struct Database
 	
 	this(string db)
 	{
-		this.dbname=db;
+		this.dbname=db~".vt";
 	}
 	
 	
