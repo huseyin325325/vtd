@@ -14,9 +14,10 @@ import crypt;
 struct Data
 {
 	
-
 	
 	string[] datas;
+
+
 	
 	void del(string name)
 	{
@@ -78,7 +79,7 @@ struct Database
 		return db[table];
 	}
 	
-	Subtable opIndexAssign(Subtable table,string name)
+	Subtable opIndexAssign(ref Subtable table,string name)
 	{
 		return db[name]=table;
 	}
@@ -131,6 +132,7 @@ struct Database
 	
 	void close()
 	{
+		
 		scope File myfile = new File(dbname,FileMode.OutNew);
 		foreach(table,subtab;db)
 		{
