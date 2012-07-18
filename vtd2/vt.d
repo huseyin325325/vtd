@@ -1,5 +1,6 @@
 module vt;
 import std.path;
+import std.algorithm;
 import std.datetime;
 import std.process;
 import std.stream; 
@@ -9,7 +10,7 @@ import std.file;
 import std.cstream;
 import std.array;
 import crypt; 
-
+public import kosullar;
 
 struct Data
 {
@@ -35,6 +36,12 @@ struct Data
 	void add(string dat)
 	{
 		datas~=dat;
+	}
+	alias bool function(string)Kıstas ;
+	
+	string[] search(Kıstas kıstas)
+	{
+		return array(filter!kıstas(datas));
 	}
 }//end of class
 
@@ -147,6 +154,9 @@ struct Database
 				}
 			}
 		}
+		
+		dbname=dbname.init;
+		db=db.init;
 		
 	}
 	
