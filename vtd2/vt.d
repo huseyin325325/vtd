@@ -10,7 +10,7 @@ import std.file;
 import std.cstream;
 import std.array;
 import crypt; 
-public import kosullar;
+public import conditions;
 
 struct Data
 {
