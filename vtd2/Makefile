@@ -6,7 +6,7 @@ DOSYALAR=\
 	deneme.d \
 	vt.d \
 	crypt.d \
-	kosullar.d \
+	conditions.d \
 	
 
 
